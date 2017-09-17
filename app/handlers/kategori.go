@@ -4,10 +4,12 @@ import (
 	"net/http"
 	"my-coconut.com/web/app/models"
 	"encoding/json"
+	"github.com/gorilla/mux"
+	"strconv"
 )
 
 func GetAllKategori (w http.ResponseWriter, r *http.Request) {
-	produkKategori, err := models.GetKategori()
+	produkKategori, err := models.GetAllKategori()
 
 	if err != nil {
 		resp, err := json.Marshal(err)
@@ -22,4 +24,10 @@ func GetAllKategori (w http.ResponseWriter, r *http.Request) {
 	}
 
 	RespondJson(w, http.StatusOK, produkKategori)
+}
+
+func GetKategori(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id, _ := strconv.ParseUint(vars["id"], 10,32)
+
 }

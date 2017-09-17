@@ -14,7 +14,7 @@ var appConfig = config.Config.App
 func main() {
 	r := mux.NewRouter()
 
-	product := r.PathPrefix("/products").Subrouter()
+	product := r.PathPrefix("/produk").Subrouter()
 	product.HandleFunc("", handlers.GetAllProducts).Methods("GET")
 
 	kategori := r.PathPrefix("/kategori").Subrouter()
