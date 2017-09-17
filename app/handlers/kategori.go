@@ -30,4 +30,11 @@ func GetKategori(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, _ := strconv.ParseUint(vars["id"], 10,32)
 
+	kategori, err := models.GetKategoriByProductID(uint32(id))
+
+	if err != nil {
+		RespondError(w, "Cannot get admin", http.StatusUnauthorized)
+	}
+
+	RespondJson(w, http.StatusOK, kategori)
 }

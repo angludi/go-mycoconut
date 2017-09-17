@@ -19,6 +19,7 @@ func main() {
 
 	kategori := r.PathPrefix("/kategori").Subrouter()
 	kategori.HandleFunc("", handlers.GetAllKategori).Methods("GET")
+	kategori.HandleFunc("/produk/{id}", handlers.GetKategori).Methods("GET")
 
 	err := http.ListenAndServe(fmt.Sprintf(":%s", appConfig.HttpPort), &MyServer{r})
 	if err != nil {

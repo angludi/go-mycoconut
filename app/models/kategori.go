@@ -11,16 +11,10 @@ type Kategori struct {
 }
 
 
-type ProdukKategori struct {
-	ID 	uint32 `json:"id"`
-	IdProduk uint32 `json:"id_produk" gorm:"foreign_key:id_produk"`
-	IdKategori uint32 `json:"id_kategori"`
-}
 
-
-func GetAllKategori() ([]ProdukKategori, error) {
+func GetAllKategori() ([]Kategori, error) {
 	var (
-		produkKategori []ProdukKategori
+		kategori []Kategori
 		err error
 	)
 
@@ -28,18 +22,35 @@ func GetAllKategori() ([]ProdukKategori, error) {
 
 	//if err = tx.Find(&produkKategori).Error; err != nil {
 
-	if err = tx.Joins("JOIN kategori on kategori.id = produk_kategori.id_kategori").Preload("Kategori").Find(&produkKategori).Error; err != nil {
+	if err = tx.Find(&kategori).Error; err != nil {
 				tx.Rollback()
-		return produkKategori, err
+		return kategori, err
 	}
 
 	tx.Commit()
-	return produkKategori, err
+	return kategori, err
 }
 
-func (ProdukKategori) TableName() string {
-	return "produk_kategori"
+func GetKategoriByProductID(ProductID uint32) ([]Kategori, error) {
+	var (
+		kategori []Kategori
+		err error
+	)
+
+	tx := gorm.MysqlConn().Begin()
+
+	if err = tx.Joins("JOIN produk_kategori pk ON pk.kategori_id = kategori.id").
+				Where("pk.produk_id=?", ProductID).
+				Find(&kategori).
+				Error; err != nil {
+		tx.Rollback()
+		return kategori, err
+	}
+
+	tx.Commit()
+	return kategori, err
 }
+
 
 func (Kategori) TableName() string {
 	return "kategori"
