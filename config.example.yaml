@@ -1,0 +1,27 @@
+app:
+  env: local
+  httpaddr: 127.0.0.1
+  httpport: 3001
+  maindomain: https://www.my-coconut.com/
+
+db:
+  driver: mysql
+  host: localhost
+  port: 3306
+  name: database
+  user: root
+  password: y2k
+
+mail:
+  driver: smtp
+  host: mailtrap.io
+  port: 25
+  username:
+  password:
+  encryption: tls
+  fromaddress: noreply@my-coconut.com
+  fromname: my-coconut.com
+
+jwt:
+  secret: mycoconutsecret
+  ttl: 525600

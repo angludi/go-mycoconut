@@ -1,0 +1,7 @@
+test:
+  driver: mysql
+  open: root:root@tcp(localhost:3306)/test
+
+development:
+  driver: mysql
+  open: root:y2k@tcp(localhost:3306)/mycoco_dev
