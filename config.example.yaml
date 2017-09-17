@@ -2,7 +2,7 @@ app:
   env: local
   httpaddr: 127.0.0.1
   httpport: 3001
-  maindomain: https://www.my-coconut.com/
+  maindomain: https://www.example.com/
 
 db:
   driver: mysql
@@ -10,7 +10,7 @@ db:
   port: 3306
   name: database
   user: root
-  password: y2k
+  password: root
 
 mail:
   driver: smtp
@@ -19,9 +19,9 @@ mail:
   username:
   password:
   encryption: tls
-  fromaddress: noreply@my-coconut.com
-  fromname: my-coconut.com
+  fromaddress: noreply@example.com
+  fromname: example.com
 
 jwt:
-  secret: mycoconutsecret
+  secret: secret
   ttl: 525600

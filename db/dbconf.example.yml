@@ -4,4 +4,4 @@ test:
 
 development:
   driver: mysql
-  open: root:y2k@tcp(localhost:3306)/mycoco_dev
+  open: root:root@tcp(localhost:3306)/database
