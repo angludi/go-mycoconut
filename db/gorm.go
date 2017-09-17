@@ -1,4 +1,4 @@
-package db
+package gorm
 
 import (
 	_ "github.com/go-sql-driver/mysql"

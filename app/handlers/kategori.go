@@ -6,8 +6,8 @@ import (
 	"encoding/json"
 )
 
-func GetAllProducts (w http.ResponseWriter, r *http.Request) {
-	produk, err := models.GetProducts()
+func GetAllKategori (w http.ResponseWriter, r *http.Request) {
+	produkKategori, err := models.GetKategori()
 
 	if err != nil {
 		resp, err := json.Marshal(err)
@@ -21,5 +21,5 @@ func GetAllProducts (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	RespondJson(w, http.StatusOK, produk)
+	RespondJson(w, http.StatusOK, produkKategori)
 }
