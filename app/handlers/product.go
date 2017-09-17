@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"my-coconut.com/web/app/models"
 	"encoding/json"
+	"my-coconut.com/web/app/transformer"
 )
 
 func GetAllProducts (w http.ResponseWriter, r *http.Request) {
@@ -21,5 +22,7 @@ func GetAllProducts (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	RespondJson(w, http.StatusOK, produk)
+	res := new(transformer.ProdukCollectionTransformer)
+	res.Transform(produk)
+	RespondJson(w, http.StatusOK, res)
 }
